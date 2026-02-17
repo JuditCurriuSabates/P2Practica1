@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Camping implements InCamping{
     @Override
     public String getNom() {
-        return "";
+        return "Hola";
     }
 
     @Override
