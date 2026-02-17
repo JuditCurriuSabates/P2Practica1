@@ -83,4 +83,5 @@ public class Camping implements InCamping{
     public Allotjament getAllotjamentEstadaMesCurta(InAllotjament.Temp temp) {
         return null;
     }
-}
+
+    private String buscarAllotjament(){return "";}
