@@ -13,7 +13,7 @@ public abstract class Allotjament implements InAllotjament{
 
     @Override
     public String getId() {
-        return "";
+        return "3";
     }
 
     @Override
