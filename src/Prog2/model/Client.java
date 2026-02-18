@@ -1,23 +1,31 @@
 package Prog2.model;
 
 public class Client implements InClient{
+    private String nom;
+    private String dni;
+
+    public Client(String nom, String dni){
+        this.nom = nom;
+        this.dni = dni;
+    }
+
     @Override
     public String getNom() {
-        return "";
+        return nom;
     }
 
     @Override
     public String getDni() {
-        return "";
+        return dni;
     }
 
     @Override
     public void setNom(String nom) {
-
+        this.nom = nom;
     }
 
     @Override
     public void setDni(String dni) {
-
+        this.dni = dni;
     }
 }

@@ -1,5 +1,7 @@
 package Prog2.model;
 
+import Prog2.vista.ExcepcioReserva;
+
 import java.time.LocalDate;
 
 public class LlistaReserves implements InLlistaReserves{

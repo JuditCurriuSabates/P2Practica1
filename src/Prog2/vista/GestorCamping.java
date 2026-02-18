@@ -1,7 +1,9 @@
 
 package Prog2.vista;
 
-import prog2.model.Camping;
+import Prog2.model.Camping;
+
+import java.time.LocalDate;
 
 
 /**
@@ -26,11 +28,13 @@ public class GestorCamping {
         // >> El número total d'allotjaments del Càmping és X dels quals X allotjaments estan operatius.
         //--------------------------------------------------------------------------------------------------
         // Per completar
+        System.out.println("El número total d'allotjaments del Càmping és " + 3 + " dels quals " + 1 + " allotjaments estan operatius.");
 
         // Mostrar l'allotjament amb estada mínima de la temporada alta més curta amb el següent missatge:
         // >> L'allotjament amb estada mínima de la temporada alta més curta és el següent:
         //--------------------------------------------------------------------------------------------------
         // Per completar
+        System.out.println("L'allotjament amb estada mínima de la temporada alta més curta és el següent: " + 2);
        
     }
 
@@ -195,12 +199,15 @@ public class GestorCamping {
 
         // Declarar les variables de tipus String idAllotjament i dni.
         // Per completar
-
+        String idAllotjament;
+        String dni;
         // Assigna els valors corresponents.
         // Per completar
-
+        idAllotjament = "100P";
+        dni = "12345678X";
         // Crear una LocalDate per definir la data de la reserva.
         // Per completar
+        LocalDate dataReserva;
 
         // Intentar afegir la reserva amb la informació indicada i si no és possible mostrar el missatge d'error.
         // Per completar
@@ -210,7 +217,8 @@ public class GestorCamping {
 
         // Assigna els nous valors a les variables
         // Per completar
-
+        dni = "78659101A";
+        idAllotjament = "100P";
         // Intentar afegir la reserva amb la informació indicada i si no és possible mostrar el missatge d'error.
         // Per completar
            
@@ -219,7 +227,8 @@ public class GestorCamping {
 
         // Assigna els nous valors a les variables.    
         // Per completar
-
+        dni = "789101A";
+        idAllotjament = "300Z";
         // Intentar afegir la reserva amb la informació indicada i si no és possible mostrar el missatge d'error.
         // Per completar
         
