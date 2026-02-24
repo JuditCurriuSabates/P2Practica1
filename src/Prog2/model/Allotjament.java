@@ -5,7 +5,7 @@ public abstract class Allotjament implements InAllotjament{
     protected String idAllotjament;
     private long estadaMinima;
 
-    public Allotjament(String nom, String idAllotjament, long estadaMinima){
+    public Allotjament(String nom, String idAllotjament){
         this.nom = nom;
         this.idAllotjament = idAllotjament;
         this.estadaMinima = estadaMinima;

@@ -28,4 +28,10 @@ public class Client implements InClient{
     public void setDni(String dni) {
         this.dni = dni;
     }
+
+    @Override
+    public String toString(){
+        String info = "Client: " + nom + "\nDNI: " + dni;
+        return info;
+    }
 }

@@ -1,14 +1,11 @@
 package Prog2.model;
-
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 public class Reserva implements InReserva{
     private Client client;
     private Allotjament allotjament;
     private LocalDate dataEntrada;
     private LocalDate dataSortida;
-    private long estada = ChronoUnit.DAYS.between(dataEntrada, dataSortida);
 
     public Reserva(Client client, Allotjament allotjament, LocalDate dataEntrada, LocalDate dataSortida){
         this.dataSortida = dataSortida;
@@ -38,21 +35,21 @@ public class Reserva implements InReserva{
 
     @Override
     public void setAllotjament_(Allotjament allotjament_) {
-        this.allotjament = allotjament;
+        this.allotjament = allotjament_;
     }
 
     @Override
     public void setClient(Client client_) {
-        this.client = client;
+        this.client = client_;
     }
 
     @Override
     public void setDataEntrada(LocalDate dataEntrada_) {
-        this.dataEntrada = dataEntrada;
+        this.dataEntrada = dataEntrada_;
     }
 
     @Override
     public void setDataSortida(LocalDate dataSortida_) {
-        this.dataSortida = dataSortida;
+        this.dataSortida = dataSortida_;
     }
 }

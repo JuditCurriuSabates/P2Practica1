@@ -1,6 +1,6 @@
 package Prog2.model;
 
-public class Casa extends Allotjament{
+public abstract class Casa extends Allotjament{
 
     private long mida;
     private int numHabitacions;
