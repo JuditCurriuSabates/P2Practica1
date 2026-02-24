@@ -6,7 +6,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class LlistaReserves implements InLlistaReserves{
-    private ArrayList<Reserva> llistaReserves;
+    private ArrayList<Reserva> reserves;
+
+    LlistaReserves(){
+        reserves = new ArrayList<Reserva>();
+    }
     @Override
     public void afegirReserva(Allotjament allotjament, Client client, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {
         boolean disp = allotjamentDisponible(allotjament, dataEntrada, dataSortida);
@@ -23,7 +27,7 @@ public class LlistaReserves implements InLlistaReserves{
         }
         if(dies && disp){
             Reserva novaReserva = new Reserva(client, allotjament, dataEntrada, dataSortida);
-            llistaReserves.add(novaReserva);
+            reserves.add(novaReserva);
         }
 
     }
