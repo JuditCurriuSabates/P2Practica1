@@ -3,6 +3,7 @@ package Prog2.model;
 public abstract class Allotjament implements InAllotjament {
     protected String nom;
     protected String idAllotjament;
+    protected long estadaMinima;
 
     public Allotjament(String nom, String idAllotjament) {
         this.nom = nom;
@@ -41,7 +42,11 @@ public abstract class Allotjament implements InAllotjament {
 
     @Override
     public void setEstadaMinima(long estadaMinimaALTA_, long estadaMinimaBAIXA_) {
-
+        if () {
+            this.estadaMinima = estadaMinimaALTA_;
+        } else {
+            this.estadaMinima = estadaMinimaBAIXA_;
+        }
     }
 
     @Override

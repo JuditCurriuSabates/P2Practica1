@@ -74,7 +74,7 @@ public class LlistaReserves implements InLlistaReserves {
         long estada = ChronoUnit.DAYS.between(dataEntrada, dataSortida);
         boolean minima;
 
-        minima = (allotjament.getEstadaMinima() <= estada);
+        minima = (allotjament.getEstadaMinima(Camping.getTemporada(dataEntrada)) <= estada);
 
         return minima;
     }

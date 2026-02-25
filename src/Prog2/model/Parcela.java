@@ -9,7 +9,7 @@ public class Parcela extends Allotjament{
         super(nom, idAllotjament);
         this.connexioElectrica = connexioElectrica;
         this.metres = metres;
-        this.estadaMinima = getEstadaMinima(2, 4);
+        //this.estadaMinima = getEstadaMinima(2, 4);
     }
 
     @Override
@@ -21,8 +21,8 @@ public class Parcela extends Allotjament{
     public String toString() {
         String info;
 
-        info = "Nom = " + nom + ", ID = " + id + ", Estada mínim en temp " + enumA + ": " + estadaMinima + ", Estada mínima en temp " +
-                enumB + ": " + estadaMinima2 + ". Parcel·la { Mida = " + metres + ", Connexió elèctrica = " + connexioElectrica + "}";
+        info = "Nom = " + nom + ", ID = " + idAllotjament + ", Estada mínim en temp " + Temp.ALTA + ": " + getEstadaMinima(Temp.ALTA) + ", Estada mínima en temp " +
+                Temp.BAIXA + ": " + getEstadaMinima(Temp.BAIXA) + ". Parcel·la { Mida = " + metres + ", Connexió elèctrica = " + connexioElectrica + "}";
 
         return info;
     }
