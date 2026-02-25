@@ -15,7 +15,7 @@ public class Camping implements InCamping {
         this.nom = nom;
         this.llistaAllotjaments = new ArrayList<>();
         this.llistaClients = new ArrayList<>();
-        LlistaReserves llistaReserves = new LlistaReserves();
+        this.llistaReserves = new LlistaReserves();
     }
 
     @Override
@@ -148,7 +148,7 @@ public class Camping implements InCamping {
         while (ita.hasNext()) {
             Allotjament a = ita.next();
             String id = a.getId();
-            if ((id).charAt(id.length() - 1) == 'P') {
+            if(a.getClass() == Parcela.class){;
                 Parcela p = (Parcela) a;
                 midaTotal+= p.getMida();
             }

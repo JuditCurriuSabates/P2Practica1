@@ -37,8 +37,7 @@ public class LlistaReserves implements InLlistaReserves {
 
     @Override
     public int getNumReserves() {
-        //return reserves.size();
-        return 0;
+        return reserves.size();
     }
 
     private boolean allotjamentDisponible(Allotjament allotjament, LocalDate dataEntrada, LocalDate dataSortida) {
