@@ -3,14 +3,17 @@ package Prog2.model;
 import Prog2.vista.ExcepcioReserva;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class LlistaReserves implements InLlistaReserves{
+public class LlistaReserves implements InLlistaReserves {
     private ArrayList<Reserva> reserves;
 
-    LlistaReserves(){
+    LlistaReserves() {
         reserves = new ArrayList<Reserva>();
     }
+
     @Override
     public void afegirReserva(Allotjament allotjament, Client client, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {
         boolean disp = allotjamentDisponible(allotjament, dataEntrada, dataSortida);
@@ -25,7 +28,7 @@ public class LlistaReserves implements InLlistaReserves{
             throw new ExcepcioReserva("Les dates sol·licitades pel client " + client.getNom() + " amb DNI: " + client.getDni() +
                     " no compleixen l'estada mínima per l'allotjament amb identificador " + allotjament.getId());
         }
-        if(dies && disp){
+        if (dies && disp) {
             Reserva novaReserva = new Reserva(client, allotjament, dataEntrada, dataSortida);
             reserves.add(novaReserva);
         }
@@ -34,14 +37,45 @@ public class LlistaReserves implements InLlistaReserves{
 
     @Override
     public int getNumReserves() {
-        return 0;
+        return reserves.size();
+    }
+
+    private boolean allotjamentDisponible(Allotjament allotjament, LocalDate dataEntrada, LocalDate dataSortida) {
+        boolean trobat = false;
+        String id = allotjament.getId();
+        Iterator<Reserva> it = reserves.iterator();
+        Reserva reserva = null;
+
+        while (it.hasNext() && !trobat) {
+            Reserva r = it.next();
+
+            if (((r.getAllotjament_()).getId()).equals(id)) {
+                trobat = true;
+                reserva = r;
+            }
+        }
+
+        if (trobat) {
+            if (dataEntrada.isAfter(reserva.getDataEntrada()) && dataEntrada.isBefore(reserva.getDataSortida())) {
+                return false;
+            } else if (dataSortida.isAfter(reserva.getDataEntrada()) && dataSortida.isBefore(reserva.getDataSortida())) {
+                return false;
+            } else if (dataEntrada.isBefore(reserva.getDataEntrada()) && dataSortida.isAfter(reserva.getDataSortida())) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return true;
+        }
+    }
+
+    private boolean isEstadaMinima(Allotjament allotjament, LocalDate dataEntrada, LocalDate dataSortida) {
+        long estada = ChronoUnit.DAYS.between(dataEntrada, dataSortida);
+        boolean minima;
+
+        minima = (allotjament.getEstadaMinima() <= estada);
+
+        return minima;
     }
 }
-    private boolean allotjamentDisponible(Allotjament allotjament, LocalDate dataEntrada, LocalDate dataSortida){
-
-        return true;
-    }
-    private boolean isEstadaMinima(Allotjament allotjament, LocalDate dataEntrada, LocalDate dataSortida){
-
-        return false;
-    }

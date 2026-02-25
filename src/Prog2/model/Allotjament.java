@@ -1,20 +1,19 @@
 package Prog2.model;
 
-public abstract class Allotjament implements InAllotjament{
+public abstract class Allotjament implements InAllotjament {
     protected String nom;
     protected String idAllotjament;
-    private long estadaMinima;
 
-    public Allotjament(String nom, String idAllotjament){
+    public Allotjament(String nom, String idAllotjament) {
         this.nom = nom;
         this.idAllotjament = idAllotjament;
-        this.estadaMinima = estadaMinima;
     }
-    public Allotjament(){
+
+    public Allotjament() {
         this.nom = "A";
         this.idAllotjament = "ED";
-        this.estadaMinima = 4;
     }
+
     @Override
     public String getNom() {
         return nom;
@@ -49,7 +48,9 @@ public abstract class Allotjament implements InAllotjament{
     public boolean correcteFuncionament() {
         return false;
     }
-    }
 
     @Override
-    public String toString() { return "";}
+    public String toString() {
+        return "";
+    }
+}

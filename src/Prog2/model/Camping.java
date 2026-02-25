@@ -3,12 +3,13 @@ package Prog2.model;
 import Prog2.vista.ExcepcioReserva;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Camping implements InCamping {
     private String nom;
     private ArrayList<Allotjament> llistaAllotjaments;
     private ArrayList<Client> llistaClients;
+    private LlistaReserves llistaReserves;
 
     public Camping(String nom){
         this.nom = nom;
@@ -90,13 +91,33 @@ public class Camping implements InCamping {
 
     @Override
     public void afegirReserva(String id_, String dni_, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {
-        // fer lo d allotjament i client
-        llistaReserves.afegirReserva(allotjament, client, dataEntrada, dataSortida);
+        Allotjament allotjament = null;
+        Client client = null;
+
+        allotjament = buscarAllotjament(id_);
+        client = buscarClient(dni_);
+
+        if (allotjament == null || client == null) {
+            throw new ExcepcioReserva("No es pot afegir la reserva");
+        } else {
+            llistaReserves.afegirReserva(allotjament, client, dataEntrada, dataSortida);
+        }
     }
 
     @Override
     public int calculAllotjamentsOperatius() {
-        return 0;
+        int comptador = 0;
+        Iterator<Allotjament> it = llistaAllotjaments.iterator();
+
+        while (it.hasNext()) {
+            Allotjament a = it.next();
+
+            if (a.correcteFuncionament()) {
+                comptador ++;
+            }
+        }
+
+        return comptador;
     }
 
     @Override
@@ -104,13 +125,57 @@ public class Camping implements InCamping {
         return null;
     }
 
-    private String buscarAllotjament(String idAllotjament) {
-        return "";
+    private Allotjament buscarAllotjament(String idAllotjament) {
+        boolean trobatA = false;
+        Allotjament allotjamentTrobat = null;
+        Iterator<Allotjament> ita = llistaAllotjaments.iterator();
+
+        while (ita.hasNext() && !trobatA) {
+            Allotjament a = ita.next();
+
+            if ((a.getId()).equals(idAllotjament)) {
+                trobatA = true;
+                allotjamentTrobat = a;
+            }
+        }
+
+        return allotjamentTrobat;
     }
-    private String buscarClient(String dni){
-        return "";
+
+    private Client buscarClient(String dni){
+        boolean trobatC = false;
+        Client clientTrobat = null;
+        Iterator<Client> itc = llistaClients.iterator();
+
+        while (itc.hasNext() && !trobatC) {
+            Client c = itc.next();
+
+            if ((c.getDni()).equals(dni)) {
+                trobatC = true;
+                clientTrobat = c;
+            }
+        }
+
+        return clientTrobat;
     }
-    public static InAllotjament.Temp getTemporada(LocalDate data){
-        return null;
+    public static InAllotjament.Temp getTemporada(LocalDate data) {
+        int dia = data.getDayOfMonth();
+        int mes = data.getMonthValue();
+
+        if (mes < 3 || mes > 9) {
+            return InAllotjament.Temp.BAIXA;
+        } else if (mes > 3 && mes < 9) {
+            return InAllotjament.Temp.ALTA;
+        } else if (mes == 3) {
+            if (dia < 21)
+                return InAllotjament.Temp.BAIXA;
+            else
+                return InAllotjament.Temp.ALTA;
+        } else {
+            if (dia < 21)
+                return InAllotjament.Temp.ALTA;
+            else
+                return InAllotjament.Temp.BAIXA;
+        }
     }
 }

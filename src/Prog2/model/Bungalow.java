@@ -1,10 +1,11 @@
 package Prog2.model;
 
 public class Bungalow extends Casa{
-    private int placesParquing;
-    private boolean aireFred;
-    private boolean terrassa;
-    private boolean tv;
+    protected int placesParquing;
+    protected boolean aireFred;
+    protected boolean terrassa;
+    protected boolean tv;
+    protected long estadaMinima;
 
     public Bungalow(String nom, String idAllotjament, String mida, int habitacions, int placesPersones, int placesParquing, boolean terrassa, boolean tv, boolean aireFred) {
         super(nom, idAllotjament, mida, habitacions, placesPersones);
@@ -12,6 +13,7 @@ public class Bungalow extends Casa{
         this.terrassa = terrassa;
         this.tv = tv;
         this.aireFred = aireFred;
+        this.estadaMinima = getEstadaMinima(4, 7);
     }
 
     @Override

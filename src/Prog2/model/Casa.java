@@ -1,10 +1,9 @@
 package Prog2.model;
 
 public abstract class Casa extends Allotjament{
-
-    private String mida;
-    private int habitacions;
-    private int placesPersones;
+    protected String mida;
+    protected int habitacions;
+    protected int placesPersones;
 
     public Casa(String nom, String idAllotjament, String mida, int habitacions, int placesPersones){
         super(nom, idAllotjament);
