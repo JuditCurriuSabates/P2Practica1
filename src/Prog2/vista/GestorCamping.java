@@ -30,7 +30,7 @@ public class GestorCamping {
         //--------------------------------------------------------------------------------------------------
         // Per completar
         System.out.println("El número total d'allotjaments del Càmping és " + campingMar.getNumAllotjaments() + " dels quals " + campingMar.calculAllotjamentsOperatius() + " allotjaments estan operatius.");
-
+        System.out.println("La mida total de les parcel·les del càmping és de " + 2 + "m²");
         // Mostrar l'allotjament amb estada mínima de la temporada alta més curta amb el següent missatge:
         // >> L'allotjament amb estada mínima de la temporada alta més curta és el següent:
         //--------------------------------------------------------------------------------------------------
@@ -218,7 +218,7 @@ public class GestorCamping {
         try {
             camping.afegirReserva(idAllotjament, dni, dataEntrada, dataSortida);
         } catch (ExcepcioReserva e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
         // 2. Afegeix una reserva pel client amb DNI "78659101A" de l'allotjament amb identificador "100P"
         // amb la data d'entrada 25 de Febrer del 2026 i data de sortida 28 de febrer del 2026.
@@ -234,7 +234,7 @@ public class GestorCamping {
         try {
             camping.afegirReserva(idAllotjament, dni, dataEntrada, dataSortida);
         } catch (ExcepcioReserva e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
         // 3. Afegeix una reserva pel client amb DNI "789101A" de l'allotjament amb identificador "300Z"
         // amb la data d'entrada 25 de Febrer del 2026 i data de sortida 28 de febrer del 2026.
@@ -250,7 +250,7 @@ public class GestorCamping {
         try {
             camping.afegirReserva(idAllotjament, dni, dataEntrada, dataSortida);
         } catch (ExcepcioReserva e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
     }
     

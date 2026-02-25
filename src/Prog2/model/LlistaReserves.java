@@ -29,7 +29,7 @@ public class LlistaReserves implements InLlistaReserves {
                     " no compleixen l'estada mínima per l'allotjament amb identificador " + allotjament.getId());
         }
         if (dies && disp) {
-            Reserva novaReserva = new Reserva(client, allotjament, dataEntrada, dataSortida);
+            Reserva novaReserva = new Reserva(allotjament, client, dataEntrada, dataSortida);
             reserves.add(novaReserva);
         }
 
@@ -37,7 +37,8 @@ public class LlistaReserves implements InLlistaReserves {
 
     @Override
     public int getNumReserves() {
-        return reserves.size();
+        //return reserves.size();
+        return 0;
     }
 
     private boolean allotjamentDisponible(Allotjament allotjament, LocalDate dataEntrada, LocalDate dataSortida) {

@@ -1,18 +1,19 @@
 package Prog2.model;
 
+import java.time.LocalDate;
+
 public abstract class Allotjament implements InAllotjament {
     protected String nom;
     protected String idAllotjament;
-    protected long estadaMinima;
+    protected long estadaMinimaALTA;
+    protected long estadaMinimaBAIXA;
+    protected long estada;
 
-    public Allotjament(String nom, String idAllotjament) {
+    public Allotjament(String nom, String idAllotjament, long estadaMinimaALTA, long estadaMinimaBAIXA) {
         this.nom = nom;
         this.idAllotjament = idAllotjament;
-    }
-
-    public Allotjament() {
-        this.nom = "A";
-        this.idAllotjament = "ED";
+        this.estadaMinimaBAIXA = estadaMinimaBAIXA;
+        this.estadaMinimaALTA = estadaMinimaALTA;
     }
 
     @Override
@@ -37,16 +38,20 @@ public abstract class Allotjament implements InAllotjament {
 
     @Override
     public long getEstadaMinima(Temp temp) {
-        return 0;
+        switch(temp){
+            case ALTA:
+                return estadaMinimaALTA;
+            case BAIXA:
+                return estadaMinimaBAIXA;
+            default: return 0;
+        }
+
     }
 
     @Override
     public void setEstadaMinima(long estadaMinimaALTA_, long estadaMinimaBAIXA_) {
-        if () {
-            this.estadaMinima = estadaMinimaALTA_;
-        } else {
-            this.estadaMinima = estadaMinimaBAIXA_;
-        }
+        this.estadaMinimaALTA = estadaMinimaALTA_;
+        this.estadaMinimaBAIXA = estadaMinimaBAIXA_;
     }
 
     @Override
@@ -56,6 +61,7 @@ public abstract class Allotjament implements InAllotjament {
 
     @Override
     public String toString() {
-        return "";
+        return "Nom=" + nom +", Id=" + idAllotjament + ", estada mínima en temp " + Temp.ALTA + ": " + getEstadaMinima(Temp.ALTA) +
+                ", estada mínima en temp " + Temp.BAIXA + ": " + getEstadaMinima(Temp.BAIXA) + ".";
     }
 }

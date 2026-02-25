@@ -3,7 +3,7 @@ package Prog2.model;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import prog2.vista.ExcepcioReserva;
+import Prog2.vista.ExcepcioReserva;
 
 class AllotjamentTest {
 

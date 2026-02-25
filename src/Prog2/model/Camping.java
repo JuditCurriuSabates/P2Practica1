@@ -13,8 +13,8 @@ public class Camping implements InCamping {
 
     public Camping(String nom){
         this.nom = nom;
-        this.llistaAllotjaments = new ArrayList<Allotjament>();
-        this.llistaClients = new ArrayList<Client>();
+        this.llistaAllotjaments = new ArrayList<>();
+        this.llistaClients = new ArrayList<>();
         LlistaReserves llistaReserves = new LlistaReserves();
     }
 
@@ -97,8 +97,10 @@ public class Camping implements InCamping {
         allotjament = buscarAllotjament(id_);
         client = buscarClient(dni_);
 
-        if (allotjament == null || client == null) {
-            throw new ExcepcioReserva("No es pot afegir la reserva");
+        if (allotjament == null){
+            throw new ExcepcioReserva("L'allotjament amb id " + id_ + " no existeix");
+        } else if (client == null) {
+            throw new ExcepcioReserva("El client amb DNI " + dni_ + " no existeix");
         } else {
             llistaReserves.afegirReserva(allotjament, client, dataEntrada, dataSortida);
         }
@@ -122,7 +124,37 @@ public class Camping implements InCamping {
 
     @Override
     public Allotjament getAllotjamentEstadaMesCurta(InAllotjament.Temp temp) {
-        return null;
+        Allotjament allotjamentMinim = null;
+        Iterator<Allotjament> ita = llistaAllotjaments.iterator();
+        long minim = Integer.MAX_VALUE;
+        long possibleMinim;
+        while (ita.hasNext()) {
+            Allotjament a = ita.next();
+            possibleMinim = a.getEstadaMinima(temp);
+            if (possibleMinim < minim ) {
+                minim = possibleMinim;
+                allotjamentMinim = a;
+            }
+        }
+
+        return allotjamentMinim;
+    }
+
+    public long midaTotalParceles(){
+        long midaTotal = 0;
+        Iterator<Allotjament> ita = llistaAllotjaments.iterator();
+
+
+        while (ita.hasNext()) {
+            Allotjament a = ita.next();
+            String id = a.getId();
+            if ((id).charAt(id.length() - 1) == 'P') {
+                Parcela p = (Parcela) a;
+                midaTotal+= p.getMida();
+            }
+        }
+
+        return midaTotal;
     }
 
     private Allotjament buscarAllotjament(String idAllotjament) {
@@ -178,4 +210,5 @@ public class Camping implements InCamping {
                 return InAllotjament.Temp.BAIXA;
         }
     }
+
 }

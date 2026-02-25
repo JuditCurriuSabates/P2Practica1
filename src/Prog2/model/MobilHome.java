@@ -5,9 +5,8 @@ public class MobilHome extends Casa{
     private long estadaMinima;
 
     public MobilHome(String nom, String idAllotjament, String mida, int habitacions, int placesPersones, boolean terrassaBarbacoa) {
-        super(nom, idAllotjament, mida, habitacions, placesPersones);
+        super(nom, idAllotjament, 5, 3, mida, habitacions, placesPersones);
         this.terrassaBarbacoa = terrassaBarbacoa;
-        //this.estadaMinima = getEstadaMinima(3, 5);
     }
 
     @Override

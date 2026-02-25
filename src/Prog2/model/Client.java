@@ -31,7 +31,7 @@ public class Client implements InClient{
 
     @Override
     public String toString(){
-        String info = "Client: " + nom + "\nDNI: " + dni;
+        String info = nom + " amb DNI: " + dni + ". ";
         return info;
     }
 }
