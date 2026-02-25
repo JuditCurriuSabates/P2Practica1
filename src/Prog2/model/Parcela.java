@@ -16,4 +16,14 @@ public class Parcela extends Allotjament{
         return connexioElectrica;
     }
 
+    @Override
+    public String toString() {
+        String info;
+
+        info = "Nom = " + nom + ", ID = " + id + ", Estada mínim en temp " + enumA + ": " + estadaMinima + ", Estada mínima en temp " +
+                enumB + ": " + estadaMinima2 + ". Parcel·la { Mida = " + metres + ", Connexió elèctrica = " + connexioElectrica + "}";
+
+        return info;
+    }
+
 }
