@@ -5,7 +5,6 @@ public class Bungalow extends Casa{
     protected boolean aireFred;
     protected boolean terrassa;
     protected boolean tv;
-    protected long estadaMinima;
 
     public Bungalow(String nom, String idAllotjament, String mida, int habitacions, int placesPersones, int placesParquing, boolean terrassa, boolean tv, boolean aireFred) {
         super(nom, idAllotjament, 7, 4, mida, habitacions, placesPersones);
@@ -13,7 +12,38 @@ public class Bungalow extends Casa{
         this.terrassa = terrassa;
         this.tv = tv;
         this.aireFred = aireFred;
-        //this.estadaMinima = getEstadaMinima(4, 7);
+    }
+
+    public int getPlacesParquing() {
+        return placesParquing;
+    }
+
+    public void setPlacesParquing(int placesParquing) {
+        this.placesParquing = placesParquing;
+    }
+
+    public boolean getAireFred() {
+        return aireFred;
+    }
+
+    public void setAireFred(boolean aireFred) {
+        this.aireFred = aireFred;
+    }
+
+    public boolean getTv() {
+        return tv;
+    }
+
+    public void setTv(boolean tv) {
+        this.tv = tv;
+    }
+
+    public boolean getTerrasa() {
+        return terrassa;
+    }
+
+    public void setTerrassa(boolean terrassa) {
+        this.terrassa = terrassa;
     }
 
     @Override

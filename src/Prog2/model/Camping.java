@@ -23,9 +23,17 @@ public class Camping implements InCamping {
         return nom;
     }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
     @Override
     public LlistaReserves getLlistaReserves() {
         return llistaReserves;
+    }
+
+    public void setLlistaReserves(LlistaReserves llistaReserves) {
+        this.llistaReserves = llistaReserves;
     }
 
     @Override
@@ -33,9 +41,17 @@ public class Camping implements InCamping {
         return llistaAllotjaments;
     }
 
+    public void setLlistaAllotjaments(ArrayList<Allotjament> llistaAllotjaments) {
+        this.llistaAllotjaments = llistaAllotjaments;
+    }
+
     @Override
     public ArrayList<Client> getLlistaClients() {
         return llistaClients;
+    }
+
+    public void setLlistaClients(ArrayList<Client> llistaClients) {
+        this.llistaClients = llistaClients;
     }
 
     @Override

@@ -3,11 +3,26 @@ package Prog2.model;
 public class Glamping extends Casa{
     private String material;
     private boolean casaMascota;
-    private long estadaMinima;
 
     public Glamping(String nom, String idAllotjament, String mida, int habitacions, int placesPersones, String material, boolean casaMascota) {
         super(nom, idAllotjament, 3, 3, mida, habitacions, placesPersones);
         this.material = material;
+        this.casaMascota = casaMascota;
+    }
+
+    public String getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
+    }
+
+    public boolean getCasaMascota() {
+        return casaMascota;
+    }
+
+    public void setCasaMascota(boolean casaMascota) {
         this.casaMascota = casaMascota;
     }
 

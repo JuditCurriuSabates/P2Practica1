@@ -10,6 +10,22 @@ public class BungalowPremium extends Bungalow{
         this.codiWifi = codiWifi;
     }
 
+    public String getCodiWifi() {
+        return codiWifi;
+    }
+
+    public void setCodiWifi(String codiWifi) {
+        this.codiWifi = codiWifi;
+    }
+
+    public boolean getServeisExtra() {
+        return serveisExtra;
+    }
+
+    public void setServeisExtra(boolean serveisExtra) {
+        this.serveisExtra = serveisExtra;
+    }
+
     @Override
     public boolean correcteFuncionament() {
     boolean correcte = false;
@@ -17,7 +33,6 @@ public class BungalowPremium extends Bungalow{
     if (aireFred && codiWifi.length() >= 8 && codiWifi.length()<= 16) {
         correcte = true;
     }
-
     return correcte;
     }
 

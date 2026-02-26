@@ -14,6 +14,14 @@ public class LlistaReserves implements InLlistaReserves {
         reserves = new ArrayList<Reserva>();
     }
 
+    public ArrayList<Reserva> getReserves() {
+        return reserves;
+    }
+
+    public void setReserves(ArrayList<Reserva> reserves) {
+        this.reserves = reserves;
+    }
+
     @Override
     public void afegirReserva(Allotjament allotjament, Client client, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {
         boolean disp = allotjamentDisponible(allotjament, dataEntrada, dataSortida);

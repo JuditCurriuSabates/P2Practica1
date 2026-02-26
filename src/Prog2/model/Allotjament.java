@@ -1,7 +1,5 @@
 package Prog2.model;
 
-import java.time.LocalDate;
-
 public abstract class Allotjament implements InAllotjament {
     protected String nom;
     protected String idAllotjament;
