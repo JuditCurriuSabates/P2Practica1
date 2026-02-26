@@ -351,7 +351,7 @@ public class GestorCamping {
         // 1. Afegeix una reserva pel client amb DNI "12345678X" de l'allotjament amb identificador "100P"
         // amb la data d'entrada 20 de Febrer del 2026 i data de sortida 28 de febrer del 2026.
 
-        // Declarar les variables de tipus String idAllotjament i dni.
+        // Declara les variables de tipus String idAllotjament i dni.
         // Per completar
         String idAllotjament;
         String dni;

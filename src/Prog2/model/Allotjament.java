@@ -36,7 +36,7 @@ public abstract class Allotjament implements InAllotjament {
 
     @Override
     public long getEstadaMinima(Temp temp) {
-        switch(temp){
+        switch (temp) {
             case ALTA:
                 return estadaMinimaALTA;
             case BAIXA:

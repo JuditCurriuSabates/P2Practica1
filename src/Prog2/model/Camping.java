@@ -107,8 +107,8 @@ public class Camping implements InCamping {
 
     @Override
     public void afegirReserva(String id_, String dni_, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {
-        Allotjament allotjament = null;
-        Client client = null;
+        Allotjament allotjament;
+        Client client;
 
         allotjament = buscarAllotjament(id_);
         client = buscarClient(dni_);
@@ -129,7 +129,6 @@ public class Camping implements InCamping {
 
         while (it.hasNext()) {
             Allotjament a = it.next();
-
             if (a.correcteFuncionament()) {
                 comptador ++;
             }
@@ -144,32 +143,31 @@ public class Camping implements InCamping {
         Iterator<Allotjament> ita = llistaAllotjaments.iterator();
         long minim = Integer.MAX_VALUE;
         long possibleMinim;
+
         while (ita.hasNext()) {
             Allotjament a = ita.next();
             possibleMinim = a.getEstadaMinima(temp);
+
             if (possibleMinim < minim ) {
                 minim = possibleMinim;
                 allotjamentMinim = a;
             }
         }
-
         return allotjamentMinim;
     }
 
-    public long midaTotalParceles(){
-        long midaTotal = 0;
+    public float midaTotalParceles(){
+        float midaTotal = 0;
         Iterator<Allotjament> ita = llistaAllotjaments.iterator();
-
 
         while (ita.hasNext()) {
             Allotjament a = ita.next();
-            String id = a.getId();
-            if(a.getClass() == Parcela.class){;
+
+            if (a.getClass() == Parcela.class) {
                 Parcela p = (Parcela) a;
                 midaTotal+= p.getMida();
             }
         }
-
         return midaTotal;
     }
 
@@ -186,7 +184,6 @@ public class Camping implements InCamping {
                 allotjamentTrobat = a;
             }
         }
-
         return allotjamentTrobat;
     }
 
@@ -203,17 +200,19 @@ public class Camping implements InCamping {
                 clientTrobat = c;
             }
         }
-
         return clientTrobat;
     }
+
     public static InAllotjament.Temp getTemporada(LocalDate data) {
         int dia = data.getDayOfMonth();
         int mes = data.getMonthValue();
 
         if (mes < 3 || mes > 9) {
             return InAllotjament.Temp.BAIXA;
+
         } else if (mes > 3 && mes < 9) {
             return InAllotjament.Temp.ALTA;
+
         } else if (mes == 3) {
             if (dia < 21)
                 return InAllotjament.Temp.BAIXA;
