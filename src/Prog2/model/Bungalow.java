@@ -55,8 +55,8 @@ public class Bungalow extends Casa{
     public String toString() {
         String info;
 
-        info = "Nom = " + nom + ", ID = " + idAllotjament + ", Estada mínim en temp " + Temp.ALTA + ": " + getEstadaMinima(Temp.ALTA) + ", Estada mínima en temp " +
-                Temp.BAIXA + ": " + getEstadaMinima(Temp.BAIXA) + ". Casa => Bungalow { Mida = " + mida + ", Habitacions = " + habitacions + ", Capacitat = " +
+        info = super.toString();
+        info += " Casa => Bungalow {Mida = " + mida + ", Habitacions = " + habitacions + ", Capacitat = " +
                 placesPersones + ", Places pàrquing = " + placesParquing + ", Terrassa = " + terrassa + ", TV = " +  tv + ", Aire fred = " + aireFred + "}";
 
         return info;

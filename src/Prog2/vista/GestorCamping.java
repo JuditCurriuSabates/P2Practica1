@@ -18,8 +18,8 @@ public class GestorCamping {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int opcio, tipusA, i, anyE, mesE, diaE, anyS, mesS, diaS, estadaMinimaBaixa, estadaMinimaAlta, habitacions = 0, placesPersones = 0, placesParquing = 0;
-        boolean decisio, connexioElectrica, aireFred = false, terrassa = false, tv = false, serveisExtra = false, casaMascotes = false, terrassaBarbacoa = false;
+        int opcio, tipusA, i, anyE, mesE, diaE, anyS, mesS, diaS, habitacions = 0, placesPersones = 0, placesParquing = 0;
+        boolean connexioElectrica, aireFred = false, terrassa = false, tv = false, serveisExtra = false, casaMascotes = false, terrassaBarbacoa = false;
         float metres;
         String dni, idAllotjament, nomClient, nomAllotjament, mida = "", codiWifi = "", material = "";
         LocalDate dataEntrada, dataSortida;
@@ -66,9 +66,6 @@ public class GestorCamping {
                     nomAllotjament = sc.nextLine();
                     System.out.println("Introdueix l'ID de l'allotjament: ");
                     idAllotjament = sc.nextLine();
-                    System.out.println("Vols decidir l'estada mínima de l'allotjament? (true: sí, false: no): ");
-                    decisio = sc.nextBoolean();
-                    sc.nextLine();
 
                     if (tipusA > 1 && tipusA < 6) {
                         System.out.println("Introdueix la mida de l'allotjament (petita, mitjana, gran): ");
@@ -78,13 +75,6 @@ public class GestorCamping {
                         System.out.println("Introdueix les places de l'allotjament: ");
                         placesPersones = sc.nextInt();
                         sc.nextLine();
-                    }
-
-                    if (decisio) {
-                        System.out.println("Introdueix l'estada mínima en temporada alta: ");
-                        estadaMinimaAlta = sc.nextInt();
-                        System.out.println("Introdueix l'estada mínima en temporada baixa: ");
-                        estadaMinimaBaixa = sc.nextInt();
                     }
 
                     if (tipusA == 2 || tipusA == 3) {

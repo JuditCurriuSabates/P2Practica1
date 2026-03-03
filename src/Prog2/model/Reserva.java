@@ -14,7 +14,7 @@ public class Reserva implements InReserva{
         this.dataEntrada = dataEntrada;
         this.client = client;
         this.allotjament = allotjament;
-        if(dataEntrada.isAfter(dataSortida)){
+        if (dataEntrada.isAfter(dataSortida)){
             throw new ExcepcioReserva("La data de sortida no pot ser abans de la data d'entrada");
         }
     }

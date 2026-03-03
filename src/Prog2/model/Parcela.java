@@ -27,8 +27,8 @@ public class Parcela extends Allotjament{
     public String toString() {
         String info;
 
-        info = "Nom=" + nom + ", Id=" + idAllotjament + ", estada mínima en temp " + Temp.ALTA + ": " + getEstadaMinima(Temp.ALTA) + ", estada mínima en temp " +
-                Temp.BAIXA + ": " + getEstadaMinima(Temp.BAIXA) + ". Parcel·la { Mida = " + metres + ", Connexió elèctrica = " + connexioElectrica + "}";
+        info = super.toString();
+        info += " Parcel·la {Mida = " + metres + ", Connexió elèctrica = " + connexioElectrica + "}";
 
         return info;
     }

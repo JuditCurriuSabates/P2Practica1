@@ -26,13 +26,20 @@ public class LlistaReserves implements InLlistaReserves {
     public void afegirReserva(Allotjament allotjament, Client client, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {
         boolean disp = allotjamentDisponible(allotjament, dataEntrada, dataSortida);
 
+        if (dataEntrada.isAfter(dataSortida)) {
+            // Comprova que la data d'entrada sigui abans de la de sortida
+            throw new ExcepcioReserva("La data de sortida no pot ser abans de la data d'entrada");
+        }
+
         if (!disp) {
+            // Comprova que l'allotjament estigui disponible els dies indicats
             throw new ExcepcioReserva("L'allotjament amb ID " + allotjament.getId() + " no està disponible en la data demanada " +
                     dataEntrada + " pel client " + client.getNom() + " amb DNI: " + client.getDni());
         }
         boolean dies = isEstadaMinima(allotjament, dataEntrada, dataSortida);
 
         if (!dies) {
+            // Comprova que l'estada demanada sigui més gran que l'estada mínima a la temporada demanada
             throw new ExcepcioReserva("Les dates sol·licitades pel client " + client.getNom() + " amb DNI: " + client.getDni() +
                     " no compleixen l'estada mínima per l'allotjament amb identificador " + allotjament.getId());
         }
@@ -53,6 +60,7 @@ public class LlistaReserves implements InLlistaReserves {
         Reserva reserva = null;
 
         while (it.hasNext() && !trobat) {
+            // Comprova que l'allotjament on es vol fer la reserva existeixi
             Reserva r = it.next();
 
             if (((r.getAllotjament_()).getId()).equals(id)) {
@@ -62,6 +70,7 @@ public class LlistaReserves implements InLlistaReserves {
         }
 
         if (trobat) {
+            // Mira que l'allotjament no està reservat a les dates indicades
             if (dataEntrada.isAfter(reserva.getDataEntrada()) && dataEntrada.isBefore(reserva.getDataSortida())) {
                 return false;
             } else if (dataSortida.isAfter(reserva.getDataEntrada()) && dataSortida.isBefore(reserva.getDataSortida())) {

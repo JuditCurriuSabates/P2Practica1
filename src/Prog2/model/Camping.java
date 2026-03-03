@@ -73,36 +73,42 @@ public class Camping implements InCamping {
     public void afegirClient(String nom_, String dni_) {
         Client client = new Client(nom_, dni_);
         llistaClients.add(client);
+        System.out.println(client.toString());
     }
 
     @Override
     public void afegirParcela(String nom_, String idAllotjament_, float metres, boolean connexioElectrica) {
         Parcela parcela = new Parcela(nom_, idAllotjament_, metres, connexioElectrica);
         llistaAllotjaments.add(parcela);
+        System.out.println(parcela.toString());
     }
 
     @Override
     public void afegirBungalow(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, int placesParquing, boolean terrassa, boolean tv, boolean aireFred) {
         Bungalow bungalow = new Bungalow(nom_, idAllotjament_, mida, habitacions, placesPersones, placesParquing, terrassa, tv, aireFred);
         llistaAllotjaments.add(bungalow);
+        System.out.println(bungalow.toString());
     }
 
     @Override
     public void afegirBungalowPremium(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, int placesParquing, boolean terrassa, boolean tv, boolean aireFred, boolean serveisExtra, String codiWifi) {
         BungalowPremium bungalowPremium = new BungalowPremium(nom_, idAllotjament_, mida, habitacions, placesPersones, placesParquing, terrassa, tv, aireFred, serveisExtra, codiWifi);
         llistaAllotjaments.add(bungalowPremium);
+        System.out.println(bungalowPremium.toString());
     }
 
     @Override
     public void afegirGlamping(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, String material, boolean casaMascota) {
         Glamping glamping = new Glamping(nom_, idAllotjament_, mida, habitacions, placesPersones, material, casaMascota);
         llistaAllotjaments.add(glamping);
+        System.out.println(glamping.toString());
     }
 
     @Override
     public void afegirMobilHome(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones, boolean terrassaBarbacoa) {
         MobilHome mobilHome = new MobilHome(nom_, idAllotjament_, mida, habitacions, placesPersones, terrassaBarbacoa);
         llistaAllotjaments.add(mobilHome);
+        System.out.println(mobilHome.toString());
     }
 
     @Override
@@ -113,6 +119,7 @@ public class Camping implements InCamping {
         allotjament = buscarAllotjament(id_);
         client = buscarClient(dni_);
 
+        // Comprova que l'allotjament i el client existeixin
         if (allotjament == null){
             throw new ExcepcioReserva("L'allotjament amb id " + id_ + " no existeix");
         } else if (client == null) {
@@ -128,6 +135,7 @@ public class Camping implements InCamping {
         Iterator<Allotjament> it = llistaAllotjaments.iterator();
 
         while (it.hasNext()) {
+            // Recorre la llista d'allotjaments i comprova, per cada allotjament, la seva operativitat
             Allotjament a = it.next();
             if (a.correcteFuncionament()) {
                 comptador ++;
@@ -145,10 +153,12 @@ public class Camping implements InCamping {
         long possibleMinim;
 
         while (ita.hasNext()) {
+            // Recorre la llista d'allotjaments
             Allotjament a = ita.next();
             possibleMinim = a.getEstadaMinima(temp);
 
             if (possibleMinim < minim ) {
+                // Si l'estada mínima actual és menor que l'anterior, es guarda la nova estada mínima i l'allotjament
                 minim = possibleMinim;
                 allotjamentMinim = a;
             }
@@ -161,9 +171,11 @@ public class Camping implements InCamping {
         Iterator<Allotjament> ita = llistaAllotjaments.iterator();
 
         while (ita.hasNext()) {
+            // Recorre la llista d'allotjaments
             Allotjament a = ita.next();
 
-            if (a.getClass() == Parcela.class) {
+            if (a instanceof Parcela) {
+                // Filtra els allotjaments de la classe parcel·la, els fa un downcast i n'obté la mida
                 Parcela p = (Parcela) a;
                 midaTotal+= p.getMida();
             }
@@ -177,6 +189,7 @@ public class Camping implements InCamping {
         Iterator<Allotjament> ita = llistaAllotjaments.iterator();
 
         while (ita.hasNext() && !trobatA) {
+            // Recorre la llista d'allotjaments i mira si l'allotjament que es busca ja hi és o no
             Allotjament a = ita.next();
 
             if ((a.getId()).equals(idAllotjament)) {
@@ -193,6 +206,7 @@ public class Camping implements InCamping {
         Iterator<Client> itc = llistaClients.iterator();
 
         while (itc.hasNext() && !trobatC) {
+            // Recorre la llista de clients i mira si el client que es busca ja hi és o no
             Client c = itc.next();
 
             if ((c.getDni()).equals(dni)) {
