@@ -18,15 +18,6 @@ public class GestorCamping {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int opcio, tipusA, i, anyE, mesE, diaE, anyS, mesS, diaS, habitacions = 0, placesPersones = 0, placesParquing = 0;
-        boolean connexioElectrica, aireFred = false, terrassa = false, tv = false, serveisExtra = false, casaMascotes = false, terrassaBarbacoa = false;
-        float metres;
-        String dni, idAllotjament, nomClient, nomAllotjament, mida = "", codiWifi = "", material = "";
-        LocalDate dataEntrada, dataSortida;
-        Scanner sc = new Scanner(System.in);
-        String [] opcions = {"Afegir allotjament nou", "Afegir client", "Afegir reserva"};
-        String [] tipusAllotjament = {"Parcel·la", "Bungalow", "Bungalow Premium", "Glàmping", "Mobil-Home"};
-
         Camping campingMar = new Camping("Camping del Mar");
         omplirDadesModel(campingMar);
         ferReserves(campingMar);
@@ -38,6 +29,7 @@ public class GestorCamping {
         //--------------------------------------------------------------------------------------------------
         // Per completar
         System.out.println("El número total d'allotjaments del Càmping és " + campingMar.getNumAllotjaments() + " dels quals " + campingMar.calculAllotjamentsOperatius() + " allotjaments estan operatius.");
+        // Mostra la mida total de les parcel·les del càmping
         System.out.println("La mida total de les parcel·les del càmping és de " + campingMar.midaTotalParceles()+ "m²");
         // Mostrar l'allotjament amb estada mínima de la temporada alta més curta amb el següent missatge:
         // >> L'allotjament amb estada mínima de la temporada alta més curta és el següent:
@@ -45,138 +37,7 @@ public class GestorCamping {
         // Per completar
         System.out.println("L'allotjament amb estada mínima de la temporada alta més curta és el següent: " + campingMar.getAllotjamentEstadaMesCurta(InAllotjament.Temp.ALTA));
 
-        do {
-            for (i  = 0; i < opcions.length; i ++) {
-                System.out.println((i + 1) + ". " + opcions[i]);
-            }
-            System.out.println("0. Sortir");
-            opcio = sc.nextInt();
-            sc.nextLine();
-
-            switch (opcio) {
-                case 1:
-                    System.out.println("Selecciona el tipus d'allotjament");
-                    for (i = 0; i < tipusAllotjament.length; i ++) {
-                        System.out.println((i + 1) + ". " + tipusAllotjament[i]);
-                    }
-                    tipusA = sc.nextInt();
-                    sc.nextLine();
-
-                    System.out.println("Introdueix el nom de l'allotjament: ");
-                    nomAllotjament = sc.nextLine();
-                    System.out.println("Introdueix l'ID de l'allotjament: ");
-                    idAllotjament = sc.nextLine();
-
-                    if (tipusA > 1 && tipusA < 6) {
-                        System.out.println("Introdueix la mida de l'allotjament (petita, mitjana, gran): ");
-                        mida = sc.nextLine();
-                        System.out.println("Introdueix les habitacions de l'allotjament: ");
-                        habitacions = sc.nextInt();
-                        System.out.println("Introdueix les places de l'allotjament: ");
-                        placesPersones = sc.nextInt();
-                        sc.nextLine();
-                    }
-
-                    if (tipusA == 2 || tipusA == 3) {
-                        System.out.println("Introdueix les places de pàrquing: ");
-                        placesParquing = sc.nextInt();
-                        System.out.println("Introdueix si l'allotjament té terrassa (true: sí, false: no): ");
-                        terrassa = sc.nextBoolean();
-                        System.out.println("Introdueix si l'allotjament té TV (true: sí, false: no): ");
-                        tv = sc.nextBoolean();
-                        System.out.println("Introdueix si l'allotjament té aire fred (true: sí, false: no): ");
-                        aireFred = sc.nextBoolean();
-                        sc.nextLine();
-                    }
-
-                    switch (tipusA) {
-                        case 1:
-                            System.out.println("Introdueix els metres de la parcel·la: ");
-                            metres = sc.nextFloat();
-                            System.out.println("Introdueix si l'allotjament té connexió elèctrica (true: sí, false: no): ");
-                            connexioElectrica = sc.nextBoolean();
-                            sc.nextLine();
-
-                            campingMar.afegirParcela(nomAllotjament, idAllotjament, metres, connexioElectrica);
-                            break;
-
-                        case 2:
-                            campingMar.afegirBungalow(nomAllotjament, idAllotjament, mida, habitacions, placesPersones, placesParquing, aireFred, terrassa, tv);
-                            break;
-
-                        case 3:
-                            System.out.println("Introdueix el codi del Wifi del bungalow: ");
-                            codiWifi = sc.nextLine();
-                            System.out.println("Introdueix si l'allotjament té llençols i tovalloles (true: sí, false: no): ");
-                            serveisExtra = sc.nextBoolean();
-                            sc.nextLine();
-
-                            campingMar.afegirBungalowPremium(nomAllotjament, idAllotjament, mida, habitacions, placesPersones, placesParquing, aireFred, terrassa, tv, serveisExtra, codiWifi);
-                            break;
-
-                        case 4:
-                            System.out.println("Introdueix el material de la tenda: ");
-                            material = sc.nextLine();
-                            System.out.println("Introdueix si l'allotjament té casa per mascotes (true: sí, false: no): ");
-                            casaMascotes = sc.nextBoolean();
-                            sc.nextLine();
-
-                            campingMar.afegirGlamping(nomAllotjament, idAllotjament, mida, habitacions, placesPersones, material, casaMascotes);
-                            break;
-
-                        case 5:
-                            System.out.println("Introdueix si l'allotjament té terrassa amb barbacoa (true: sí, false: no): ");
-                            terrassaBarbacoa = sc.nextBoolean();
-                            sc.nextLine();
-
-                            campingMar.afegirMobilHome(nomAllotjament, idAllotjament, mida, habitacions, placesPersones, terrassaBarbacoa);
-                            break;
-
-                        default:
-                            System.out.println("Has introduït un valor incorrecte");
-                            break;
-                    }
-                    break;
-
-                case 2:
-                    System.out.println("Introdueix el nom del nou client: ");
-                    nomClient = sc.nextLine();
-                    System.out.println("Introdueix el DNI del nou client: ");
-                    dni = sc.nextLine();
-
-                    campingMar.afegirClient(nomClient, dni);
-                    break;
-
-                case 3:
-                    System.out.println("Introdueix el DNI del client: ");
-                    dni = sc.nextLine();
-                    System.out.println("Introdueix l'ID de l'allotjament: ");
-                    idAllotjament = sc.nextLine();
-                    System.out.println("Introdueix la data d'entrada (aaaa mm dd)");
-                    anyE = sc.nextInt();
-                    mesE = sc.nextInt();
-                    diaE = sc.nextInt();
-                    sc.nextLine();
-                    System.out.println("Introdueix la data d'de sortida (aaaa mm dd)");
-                    anyS = sc.nextInt();
-                    mesS = sc.nextInt();
-                    diaS = sc.nextInt();
-                    sc.nextLine();
-
-                    dataEntrada = LocalDate.of(anyE, mesE, diaE);
-                    dataSortida = LocalDate.of(anyS, mesS, diaS);
-
-                    try {
-                        campingMar.afegirReserva(idAllotjament, dni, dataEntrada, dataSortida);
-                    } catch (ExcepcioReserva e) {
-                        System.out.println(e.getMessage());
-                    }
-                    break;
-
-                default: break;
-            }
-
-        } while (opcio != 0);
+        llencarMenuPrincipal(campingMar);
 
         System.out.println("S'ha tancat la sessió correctament");
        
@@ -332,7 +193,7 @@ public class GestorCamping {
 
     /**
      * Mètode per fer reserves d'allotjaments.
-     * @param camping
+     * @param camping càmping creat
      */
     private static void ferReserves(Camping camping){
         
@@ -395,5 +256,195 @@ public class GestorCamping {
         } catch (ExcepcioReserva e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public static void llencarMenuPrincipal(Camping campingMar) {
+        Scanner sc = new Scanner(System.in);
+        String [] opcions = {"Afegir allotjament nou", "Afegir client", "Afegir reserva"};
+        int opcio, i;
+
+        do {
+            // Menú principal del programa: Permet afegir allotjaments, clients i reserves
+            for (i  = 0; i < opcions.length; i ++) {
+                System.out.println((i + 1) + ". " + opcions[i]);
+            }
+            System.out.println("0. Sortir");
+            opcio = sc.nextInt();
+            sc.nextLine();
+
+            switch (opcio) {
+                case 1: afegirNouAllotjament(sc, campingMar); break;
+                case 2: afegirNouClient(sc, campingMar); break;
+                case 3: afegirNovaReserva(sc, campingMar); break;
+                default: break;
+            }
+
+        } while (opcio != 0);
+        // Si s'escull l'opció 0, s'acaba l'execució del programa
+
+    }
+
+    static void afegirNouAllotjament(Scanner sc, Camping campingMar) {
+        int habitacions = 0, placesPersones = 0;
+        String idAllotjament, nomAllotjament, mida = "";
+
+        String [] tipusAllotjament = {"Parcel·la", "Bungalow", "Bungalow Premium", "Glàmping", "Mobil-Home"};
+        int i, tipusA;
+
+        System.out.println("Selecciona el tipus d'allotjament");
+        for (i = 0; i < tipusAllotjament.length; i ++) {
+            System.out.println((i + 1) + ". " + tipusAllotjament[i]);
+        }
+        tipusA = sc.nextInt();
+        sc.nextLine();
+
+        // Fa les preguntes per emplenar les característiques que tenen en comú tots els allotjaments
+        System.out.println("Introdueix el nom de l'allotjament: ");
+        nomAllotjament = sc.nextLine();
+        System.out.println("Introdueix l'ID de l'allotjament: ");
+        idAllotjament = sc.nextLine();
+
+        if (tipusA > 1 && tipusA < 6) {
+            // Fa les preguntes per emplenar les característiques que tenen en comú tots els allotjaments de tipus casa
+            System.out.println("Introdueix la mida de l'allotjament (petita, mitjana, gran): ");
+            mida = sc.nextLine();
+            System.out.println("Introdueix les habitacions de l'allotjament: ");
+            habitacions = sc.nextInt();
+            System.out.println("Introdueix les places de l'allotjament: ");
+            placesPersones = sc.nextInt();
+            sc.nextLine();
+        }
+
+        switch (tipusA) {
+            case 1: afegirParcela(nomAllotjament, idAllotjament, sc, campingMar); break;
+            case 2: afegirBungalow(nomAllotjament, idAllotjament, sc, campingMar, mida, habitacions, placesPersones); break;
+            case 3: afegirBungalowPremium(nomAllotjament, idAllotjament, sc, campingMar, mida, habitacions, placesPersones); break;
+            case 4: afegirGlamping(nomAllotjament, idAllotjament, sc, campingMar, mida, habitacions, placesPersones); break;
+            case 5: afegirMobilHome(nomAllotjament, idAllotjament, sc, campingMar, mida, habitacions, placesPersones); break;
+            default:
+                // Si l'opció escollida no es troba entre 1 i 6, es llença un missatge d'error
+                System.out.println("Has introduït un valor incorrecte");
+                break;
+        }
+    }
+
+    static void afegirNouClient(Scanner sc, Camping campingMar) {
+        String dni, nomClient;
+
+        // Es pregunta la informació necessària per afegir un client, es crea un objecte d'aquest tipus i s'afegeix a la llista
+        System.out.println("Introdueix el nom del nou client: ");
+        nomClient = sc.nextLine();
+        System.out.println("Introdueix el DNI del nou client: ");
+        dni = sc.nextLine();
+
+        campingMar.afegirClient(nomClient, dni);
+    }
+
+    static void afegirNovaReserva(Scanner sc, Camping campingMar) {
+        int anyE, mesE, diaE, anyS, mesS, diaS;
+        String dni, idAllotjament;
+        LocalDate dataEntrada, dataSortida;
+
+        // Es pregunta la informació necessària per afegir una reserva, es crea un objecte d'aquest tipus i s'afegeix a la llista
+        System.out.println("Introdueix el DNI del client: ");
+        dni = sc.nextLine();
+        System.out.println("Introdueix l'ID de l'allotjament: ");
+        idAllotjament = sc.nextLine();
+        System.out.println("Introdueix la data d'entrada (aaaa mm dd)");
+        anyE = sc.nextInt();
+        mesE = sc.nextInt();
+        diaE = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Introdueix la data de sortida (aaaa mm dd)");
+        anyS = sc.nextInt();
+        mesS = sc.nextInt();
+        diaS = sc.nextInt();
+        sc.nextLine();
+
+        dataEntrada = LocalDate.of(anyE, mesE, diaE);
+        dataSortida = LocalDate.of(anyS, mesS, diaS);
+
+        try {
+            // S'intenta crear un objecte de tipus Reserva. Si no es pot, captura l'excepció que llença la classe Reserva
+            campingMar.afegirReserva(idAllotjament, dni, dataEntrada, dataSortida);
+        } catch (ExcepcioReserva e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    static void afegirParcela(String nomAllotjament, String idAllotjament, Scanner sc, Camping campingMar) {
+        float metres;
+        boolean connexioElectrica;
+
+        System.out.println("Introdueix els metres de la parcel·la: ");
+        metres = sc.nextFloat();
+        System.out.println("Introdueix si l'allotjament té connexió elèctrica (true: sí, false: no): ");
+        connexioElectrica = sc.nextBoolean();
+        sc.nextLine();
+
+        campingMar.afegirParcela(nomAllotjament, idAllotjament, metres, connexioElectrica);
+    }
+
+    static void afegirBungalow(String nomAllotjament, String idAllotjament, Scanner sc, Camping campingMar, String mida, int habitacions, int placesPersones) {
+        int placesParquing;
+        boolean terrassa, tv, aireFred;
+
+        System.out.println("Introdueix les places de pàrquing: ");
+        placesParquing = sc.nextInt();
+        System.out.println("Introdueix si l'allotjament té terrassa (true: sí, false: no): ");
+        terrassa = sc.nextBoolean();
+        System.out.println("Introdueix si l'allotjament té TV (true: sí, false: no): ");
+        tv = sc.nextBoolean();
+        System.out.println("Introdueix si l'allotjament té aire fred (true: sí, false: no): ");
+        aireFred = sc.nextBoolean();
+        sc.nextLine();
+
+        campingMar.afegirBungalow(nomAllotjament, idAllotjament, mida, habitacions, placesPersones, placesParquing, aireFred, terrassa, tv);
+    }
+
+    static void afegirBungalowPremium(String nomAllotjament, String idAllotjament, Scanner sc, Camping campingMar, String mida, int habitacions, int placesPersones) {
+        int placesParquing;
+        boolean terrassa, tv, aireFred, serveisExtra;
+        String codiWifi;
+
+        System.out.println("Introdueix les places de pàrquing: ");
+        placesParquing = sc.nextInt();
+        System.out.println("Introdueix si l'allotjament té terrassa (true: sí, false: no): ");
+        terrassa = sc.nextBoolean();
+        System.out.println("Introdueix si l'allotjament té TV (true: sí, false: no): ");
+        tv = sc.nextBoolean();
+        System.out.println("Introdueix si l'allotjament té aire fred (true: sí, false: no): ");
+        aireFred = sc.nextBoolean();
+        sc.nextLine();
+        System.out.println("Introdueix el codi del Wifi del bungalow: ");
+        codiWifi = sc.nextLine();
+        System.out.println("Introdueix si l'allotjament té llençols i tovalloles (true: sí, false: no): ");
+        serveisExtra = sc.nextBoolean();
+        sc.nextLine();
+
+        campingMar.afegirBungalowPremium(nomAllotjament, idAllotjament, mida, habitacions, placesPersones, placesParquing, aireFred, terrassa, tv, serveisExtra, codiWifi);
+    }
+
+    static void afegirGlamping(String nomAllotjament, String idAllotjament, Scanner sc, Camping campingMar, String mida, int habitacions, int placesPersones) {
+        String material;
+        boolean casaMascotes;
+
+        System.out.println("Introdueix el material de la tenda: ");
+        material = sc.nextLine();
+        System.out.println("Introdueix si l'allotjament té casa per mascotes (true: sí, false: no): ");
+        casaMascotes = sc.nextBoolean();
+        sc.nextLine();
+
+        campingMar.afegirGlamping(nomAllotjament, idAllotjament, mida, habitacions, placesPersones, material, casaMascotes);
+    }
+
+    static void afegirMobilHome(String nomAllotjament, String idAllotjament, Scanner sc, Camping campingMar, String mida, int habitacions, int placesPersones) {
+        boolean terrassaBarbacoa;
+
+        System.out.println("Introdueix si l'allotjament té terrassa amb barbacoa (true: sí, false: no): ");
+        terrassaBarbacoa = sc.nextBoolean();
+        sc.nextLine();
+
+        campingMar.afegirMobilHome(nomAllotjament, idAllotjament, mida, habitacions, placesPersones, terrassaBarbacoa);
     }
 }

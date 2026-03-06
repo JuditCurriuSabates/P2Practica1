@@ -10,14 +10,25 @@ import java.util.Iterator;
 public class LlistaReserves implements InLlistaReserves {
     private ArrayList<Reserva> reserves;
 
+    /**
+     * Constructor d'objectes de la classe LlistaReserves. Crea una nova llista de tipus ArrayList.
+     */
     LlistaReserves() {
         reserves = new ArrayList<Reserva>();
     }
 
+    /**
+     * Obté la llista de reserves.
+     * @return la llista de reserves.
+     */
     public ArrayList<Reserva> getReserves() {
         return reserves;
     }
 
+    /**
+     * Crea una nova llista de reserves.
+     * @param reserves la nova llista de reserves.
+     */
     public void setReserves(ArrayList<Reserva> reserves) {
         this.reserves = reserves;
     }
@@ -53,6 +64,13 @@ public class LlistaReserves implements InLlistaReserves {
         return reserves.size();
     }
 
+    /**
+     * Comprova si un allotjament està disponible en unes dates determinades.
+     * @param allotjament l'allotjament on es vol fer la reserva.
+     * @param dataEntrada la data d'entrada sol·licitada pel client.
+     * @param dataSortida la data de sortida sol·licitada pel client.
+     * @return si l'allotjament està disponible.
+     */
     private boolean allotjamentDisponible(Allotjament allotjament, LocalDate dataEntrada, LocalDate dataSortida) {
         boolean trobat = false;
         String id = allotjament.getId();
@@ -85,6 +103,13 @@ public class LlistaReserves implements InLlistaReserves {
         }
     }
 
+    /**
+     * Comprova si la reserva que es vol fer en un allotjament supera l'estada mínima per aquell allotjament.
+     * @param allotjament l'allotjament on es vol fer la reserva.
+     * @param dataEntrada la data d'entrada sol·licitada pel client.
+     * @param dataSortida la data de sortida sol·licitada pel client.
+     * @return si l'estada supera l'estada mínima.
+     */
     private boolean isEstadaMinima(Allotjament allotjament, LocalDate dataEntrada, LocalDate dataSortida) {
         long estada = ChronoUnit.DAYS.between(dataEntrada, dataSortida);
         boolean minima;

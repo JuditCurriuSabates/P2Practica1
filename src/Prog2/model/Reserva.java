@@ -9,6 +9,14 @@ public class Reserva implements InReserva{
     private LocalDate dataEntrada;
     private LocalDate dataSortida;
 
+    /**
+     * Constructor d'objectes de la classe Reserva.
+     * @param allotjament allotjament on es vol efectuar la reserva.
+     * @param client client que vol efectuar la reserva.
+     * @param dataEntrada data d'entrada a l'allotjament.
+     * @param dataSortida data de sortida de l'allotjament.
+     * @throws ExcepcioReserva si la data de sortida és abans de la data d'entrada.
+     */
     public Reserva( Allotjament allotjament, Client client, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva{
         this.dataSortida = dataSortida;
         this.dataEntrada = dataEntrada;
@@ -18,6 +26,7 @@ public class Reserva implements InReserva{
             throw new ExcepcioReserva("La data de sortida no pot ser abans de la data d'entrada");
         }
     }
+
     @Override
     public Allotjament getAllotjament_() {
         return allotjament;

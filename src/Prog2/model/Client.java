@@ -4,6 +4,11 @@ public class Client implements InClient{
     private String nom;
     private String dni;
 
+    /**
+     * Constructor d'objectes de la classe Client.
+     * @param nom nom del client.
+     * @param dni DNI del client.
+     */
     public Client(String nom, String dni){
         this.nom = nom;
         this.dni = dni;

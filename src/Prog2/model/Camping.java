@@ -11,6 +11,10 @@ public class Camping implements InCamping {
     private ArrayList<Client> llistaClients;
     private LlistaReserves llistaReserves;
 
+    /**
+     * Constructor d'objectes de la classe Camping. Crea, a més a més, dos objectes d'ArrayList i un de LlistaReserves
+     * @param nom nom del càmping.
+     */
     public Camping(String nom){
         this.nom = nom;
         this.llistaAllotjaments = new ArrayList<>();
@@ -23,6 +27,10 @@ public class Camping implements InCamping {
         return nom;
     }
 
+    /**
+     * Estableix el nom del càmping.
+     * @param nom el nom a assignar
+     */
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -32,6 +40,10 @@ public class Camping implements InCamping {
         return llistaReserves;
     }
 
+    /**
+     * Crea una nova llista de reserves.
+     * @param llistaReserves la nova llista de reserves
+     */
     public void setLlistaReserves(LlistaReserves llistaReserves) {
         this.llistaReserves = llistaReserves;
     }
@@ -41,6 +53,10 @@ public class Camping implements InCamping {
         return llistaAllotjaments;
     }
 
+    /**
+     * Crea una nova llista d'allotjaments.
+     * @param llistaAllotjaments la nova llista d'allotjaments.
+     */
     public void setLlistaAllotjaments(ArrayList<Allotjament> llistaAllotjaments) {
         this.llistaAllotjaments = llistaAllotjaments;
     }
@@ -50,6 +66,10 @@ public class Camping implements InCamping {
         return llistaClients;
     }
 
+    /**
+     * Crea una nova llista de clients.
+     * @param llistaClients la nova llista de clients
+     */
     public void setLlistaClients(ArrayList<Client> llistaClients) {
         this.llistaClients = llistaClients;
     }
@@ -166,6 +186,10 @@ public class Camping implements InCamping {
         return allotjamentMinim;
     }
 
+    /**
+     * Suma la mida de cada parcel·la de la llista d'allotjaments per obtenir-ne el total.
+     * @return la mida total de les parcel·les del càmping.
+     */
     public float midaTotalParceles(){
         float midaTotal = 0;
         Iterator<Allotjament> ita = llistaAllotjaments.iterator();
@@ -183,6 +207,11 @@ public class Camping implements InCamping {
         return midaTotal;
     }
 
+    /**
+     * Busca si un allotjament existeix a la llista d'allotjaments.
+     * @param idAllotjament l'ID de l'allotjament que volem buscar
+     * @return l'allotjament que se cercava.
+     */
     private Allotjament buscarAllotjament(String idAllotjament) {
         boolean trobatA = false;
         Allotjament allotjamentTrobat = null;
@@ -200,6 +229,11 @@ public class Camping implements InCamping {
         return allotjamentTrobat;
     }
 
+    /**
+     * Busca si un client  existeix a la llista de clients.
+     * @param dni el DNI del client que volem buscar
+     * @return el client que se cercava.
+     */
     private Client buscarClient(String dni){
         boolean trobatC = false;
         Client clientTrobat = null;
@@ -217,6 +251,11 @@ public class Camping implements InCamping {
         return clientTrobat;
     }
 
+    /**
+     * Donada una data, retorna si és de temporada alta o baixa.
+     * @param data la data que volem saber si és de temporada alta o baixa.
+     * @return si la temporada és alta o baixa.
+     */
     public static InAllotjament.Temp getTemporada(LocalDate data) {
         int dia = data.getDayOfMonth();
         int mes = data.getMonthValue();

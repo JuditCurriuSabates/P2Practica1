@@ -7,6 +7,13 @@ public abstract class Allotjament implements InAllotjament {
     protected long estadaMinimaBAIXA;
     protected long estada;
 
+    /**
+     * Constructor d'objectes de la classe Casa.
+     * @param nom nom de l'allotjament.
+     * @param idAllotjament ID de l'allotjament.
+     * @param estadaMinimaALTA estada mínima de l'allotjament en temporada alta.
+     * @param estadaMinimaBAIXA estada mínima de l'allotjament en temporada baixa.
+     */
     public Allotjament(String nom, String idAllotjament, long estadaMinimaALTA, long estadaMinimaBAIXA) {
         this.nom = nom;
         this.idAllotjament = idAllotjament;
@@ -57,6 +64,10 @@ public abstract class Allotjament implements InAllotjament {
         return false;
     }
 
+    /**
+     * Passa tota la informació relacionada amb un allotjament a String perquè es pugui imprimir
+     * @return l'String que conté la informació
+     */
     @Override
     public String toString() {
         return "Nom=" + nom +", Id=" + idAllotjament + ", estada mínima en temp " + Temp.ALTA + ": " + getEstadaMinima(Temp.ALTA) +
